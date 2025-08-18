@@ -12,4 +12,14 @@
 
 .navbar {
     background-color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.link_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 30px;
 }

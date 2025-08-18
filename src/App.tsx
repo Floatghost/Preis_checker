@@ -8,7 +8,10 @@ export default function App() {
     return (
         <div className='wrapper'>
             <nav className='navbar'>
-                <Link to="/">Home</Link> | <Link to="/stats">Stats</Link>
+                <h1>Preis Checker</h1>
+                <div className='link_wrapper'>
+                    <Link to="/">Home</Link> | <Link to="/stats">Stats</Link>
+                </div>
             </nav>
 
             <Routes>
