@@ -6,8 +6,8 @@ import Home from './pages/Home/Home';
 
 export default function App() {
     return (
-        <div>
-            <nav>
+        <div className='wrapper'>
+            <nav className='navbar'>
                 <Link to="/">Home</Link> | <Link to="/stats">Stats</Link>
             </nav>
 
