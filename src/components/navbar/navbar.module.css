@@ -1,0 +1,13 @@
+.navbar {
+    background-color: #2e2c2c;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.link_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 30px;
+}
