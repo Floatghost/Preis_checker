@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from "./home.module.css";
+import TableElem from '../../components/tableElem';
 
 export default function SearchInput() {
     const [query, setQuery] = useState('');
@@ -21,7 +22,8 @@ export default function SearchInput() {
                 placeholder="Search"
             />
             <div className={styles.Tabelle}>
-                
+                <TableElem
+                />
             </div>
         </div>
     );
