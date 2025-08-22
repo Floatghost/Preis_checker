@@ -1,0 +1,32 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    box-sizing: border-box;
+    gap: 10px;
+}
+
+h1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.products,
+.websites {
+    padding: 10px;
+    width: auto;
+    height: auto;
+    background-color: #393838;
+    border-radius: 5px;
+    color: white; /* Assuming you want contrast on dark background */
+    box-sizing: border-box;
+}
+
+.header_logo {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

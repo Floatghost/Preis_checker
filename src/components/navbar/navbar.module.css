@@ -1,0 +1,22 @@
+.navbar {
+    background-color: #2e2c2c;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.link_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 30px;
+    gap: 10px;
+}
+
+.linkhome,
+.linkstats,
+.title {
+    color: white;
+}
