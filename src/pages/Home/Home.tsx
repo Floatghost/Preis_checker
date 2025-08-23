@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./home.module.css";
+import TableElem from '../../components/tableElem';
 
 type Product = {
     id: number;
@@ -70,7 +71,8 @@ export default function SearchInput() {
                 placeholder="Search"
             />
             <div className={styles.Tabelle}>
-                
+                <TableElem
+                />
             </div>
 
             <div className={styles.output}>
