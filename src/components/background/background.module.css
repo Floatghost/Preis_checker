@@ -15,7 +15,7 @@
     z-index: 10;
     /* max-width: 48rem; */
     margin: 0 auto;
-    /* min-height: 100svh; */
+    min-height: 100svh;
     height: 100%;
     width: 100%;
     display: flex;
@@ -55,7 +55,7 @@
 
 .blob3 {
     left: 15%;
-    bottom: -20rem;
+    bottom: 0rem;
     width: 40rem;
     height: 40rem;
 }
