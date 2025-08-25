@@ -43,8 +43,8 @@ export default function Background({
                     "radial-gradient(closest-side, rgba(251,191,36,0.28), rgba(251,191,36,0) 75%)",
                 filter: "blur(80px)",
                 }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+                // animate={{ rotate: 360 }}
+                // transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
             />
             <motion.div
                 aria-hidden
@@ -54,8 +54,8 @@ export default function Background({
                     "radial-gradient(closest-side, rgba(59,130,246,0.18), rgba(59,130,246,0) 70%)",
                 filter: "blur(90px)",
                 }}
-                animate={{ rotate: -360 }}
-                transition={{ duration: 110, repeat: Infinity, ease: "linear" }}
+                // animate={{ rotate: -360 }}
+                // transition={{ duration: 110, repeat: Infinity, ease: "linear" }}
             />
             <motion.div
                 aria-hidden
@@ -65,8 +65,8 @@ export default function Background({
                     "radial-gradient(closest-side, rgba(16,185,129,0.16), rgba(16,185,129,0) 70%)",
                 filter: "blur(80px)",
                 }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 95, repeat: Infinity, ease: "linear" }}
+                // animate={{ rotate: 360 }}
+                // transition={{ duration: 95, repeat: Infinity, ease: "linear" }}
             />
 
             <div
