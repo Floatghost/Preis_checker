@@ -4,7 +4,7 @@ import styles from "./navbar.module.css";
 export default function Navbar() {
     return (
         <div className={styles.wrapper}>
-            <nav className={styles.navbar}>
+            {/* <nav className={styles.navbar}>
                 <Link to='/'>
                     <h1 className={styles.title} >Preis Checker</h1>
                 </Link>
@@ -12,7 +12,13 @@ export default function Navbar() {
                     <Link to="/" className={styles.linkhome}>Home</Link>
                     <Link to="/stats" className={styles.linkstats}>Stats</Link>
                 </div>
-            </nav>
+            </nav> */}
+            <div>
+                <h1 className={styles.title}>Preis checker</h1>
+                <p className={styles.hint}>
+                Press <kbd className={styles.kbd}>Enter</kbd> to search
+                </p>
+            </div>
         </div>
     );
 };
