@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect, useRef } from 'react';
 import styles from "./background.module.css";
 
 type BackgroundProps = {
@@ -16,6 +16,55 @@ export default function Background({
             </div>,
     footer = <p>Test © 2025</p>,
 }: BackgroundProps) {
+
+    const headerRef = useRef<HTMLDivElement | null>(null);
+    const [blob1Position, setBlob1Position] = useState({ top: '0px', left: '0px' });
+    const [pageHeight, setPageHeight] = useState(0);
+    const [pageWidth, setPageWidth] = useState(0);
+    const [blob2Positions, setBlob2Positions] = useState<{ top: string; left: string }[]>([]);
+
+    useEffect(() => {
+    if (headerRef.current) {
+        const rect = headerRef.current.getBoundingClientRect();
+        setBlob1Position({
+        top: `${rect.top + window.scrollY - rect.height + 100}px`,
+        left: `${rect.left + window.scrollX + rect.width / 2}px`,
+        });
+    }
+    }, []);
+
+    useEffect(() => {
+        //TODO add protection for when blob is to large
+        //TODO make more advanced numBlobs
+        const numBlobs = Math.floor(pageHeight / 800);
+        const blobWidth = 720;
+        const maxLeft = Math.max(0, pageWidth - blobWidth);
+
+        const positions = Array.from({ length: numBlobs }).map((_, i) => ({
+            top: `${Math.min(i * 800 + 400, pageHeight - 800)}px`,
+            left: `${Math.random() * maxLeft}px`,
+        }));
+
+        console.log(positions);
+
+        setBlob2Positions(positions);
+    }, [pageHeight, pageWidth]);
+
+    useEffect(() => {
+        const updateHeight = () => {
+            setPageHeight(document.documentElement.scrollHeight);
+            setPageWidth(document.documentElement.scrollWidth);
+        };
+
+        updateHeight(); // initial load
+        window.addEventListener('resize', updateHeight);
+        window.addEventListener('scroll', updateHeight);
+
+        return () => {
+            window.removeEventListener('resize', updateHeight);
+            window.removeEventListener('scroll', updateHeight);
+        };
+    }, []);
 
     const noise = useMemo(
         () =>
@@ -39,14 +88,16 @@ export default function Background({
                 aria-hidden
                 className={[styles.blob, styles.blob1].join(" ")}
                 style={{
+                    top: blob1Position.top,
+                    left: blob1Position.left,
                 background:
-                    "radial-gradient(closest-side, rgba(251,191,36,0.28), rgba(251,191,36,0) 75%)",
+                    "radial-gradient(closest-side, rgba(251,191,36,0.28), rgba(251,191,36,0) 100%)",
                 filter: "blur(80px)",
                 }}
                 // animate={{ rotate: 360 }}
                 // transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
             />
-            <motion.div
+            {/* <motion.div
                 aria-hidden
                 className={[styles.blob, styles.blob2].join(" ")}
                 style={{
@@ -56,7 +107,22 @@ export default function Background({
                 }}
                 // animate={{ rotate: -360 }}
                 // transition={{ duration: 110, repeat: Infinity, ease: "linear" }}
-            />
+            /> */}
+            {blob2Positions.map((pos, i) => (
+                <motion.div
+                    key={`blob2-${i}`}
+                    aria-hidden
+                    className={[styles.blob, styles.blob2].join(" ")}
+                    style={{
+                        top: pos.top,
+                        left: pos.left,
+                        background:
+                            "radial-gradient(closest-side, rgba(0, 98, 255, 0.18), rgba(59,130,246,0) 200%)",
+                        filter: "blur(90px)",
+                        position: "absolute",
+                    }}
+                />
+            ))}
             <motion.div
                 aria-hidden
                 className={[styles.blob, styles.blob3].join(" ")}
@@ -76,7 +142,7 @@ export default function Background({
             />
 
             <main className={styles.content}>
-                {header && <div className={styles.header}>{header}</div>}
+                {header && <div className={styles.header} ref={headerRef}>{header}</div>}
                 {center && <div className={styles.center}>{center}</div>}
                 {footer && <div className={styles.footer}>{footer}</div>}
             </main>
@@ -91,9 +157,6 @@ function Title() {
     return (
         <div>
             <h1 className={styles.title}>Preis checker</h1>
-            <p className={styles.hint}>
-            Press <kbd className={styles.kbd}>Enter</kbd> to search
-            </p>
         </div>
     );
 };
@@ -101,6 +164,9 @@ function Title() {
 function Search() {
     return (
         <div className={styles.search}>
+            <p className={styles.hint}>
+            Press <kbd className={styles.kbd}>Enter</kbd> to search
+            </p>
             <div className={styles.inputWrap}>
                 <input
                 placeholder="Search…"

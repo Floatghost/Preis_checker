@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./home.module.css";
 import TableElem from '../../components/tableElem';
+import { Link } from 'react-router-dom';
 
 type Product = {
     id: number;
@@ -62,7 +63,15 @@ export default function SearchInput() {
 
     return (
         <div className={styles.wrapper}>
+
+            <p className={styles.hint}>
+                Press <kbd className={styles.kbd}>Enter</kbd> to search
+            </p>
+
+            
             <input
+                id="search"
+                name="search"
                 className={styles.input_field}
                 type="text"
                 value={query}
@@ -70,6 +79,11 @@ export default function SearchInput() {
                 onKeyDown={handleKeyDown}
                 placeholder="Search"
             />
+
+            <Link to="/stats">
+                <div className={styles.statsbutton}>view stats</div>
+            </Link>
+
             <div className={styles.Tabelle}>
                 <TableElem
                 />

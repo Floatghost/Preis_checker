@@ -1,8 +1,25 @@
 .Tabelle {
     Width: 500px;
     height: 100%;
-    background-color: brown;
+    /* background-color: brown; */
+    background-color: transparent;
 
+}
+
+.statsbutton {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    /* background-color: #444; */
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.statsbutton:hover {
+    background-color: #444;
 }
 
 .input_field {
@@ -28,4 +45,17 @@
     color: white;
     display: flex;
     flex-direction: column;
+}
+
+.hint {
+    /* margin-top: 1.5rem; */
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,.7);
+}
+
+.kbd {
+    border-radius: 6px;
+    background: rgba(255,255,255,.1);
+    padding: 0 4px;
 }
