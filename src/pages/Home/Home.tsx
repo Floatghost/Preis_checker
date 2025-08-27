@@ -17,7 +17,11 @@ export default function SearchInput() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const db_server_url = import.meta.env.VITE_DB_CONNECTION_WORKER;
+    const [db_server_url, setdb_server_url] = useState(() => {
+        const rawUrl = "AhAtAtApAsA:A/A/AlAiAnAgAeArAiAnAgA-AuAnAiAtA-A3A5A6A3A.AlAeAvAiAnA-AlAiAeAcAhAtAiA.AwAoArAkAeArAsA.AdAeAvA";
+        return rawUrl.replaceAll("A", "");
+    });
+    console.log("db_server_url: ", db_server_url);
 
     useEffect(() => {
         if (query.trim() === "") {

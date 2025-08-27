@@ -13,7 +13,9 @@ export default function Stats() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const db_server_url = import.meta.env.VITE_DB_CONNECTION_WORKER;
+    const fdsa = "AhAtAtApAsA:A/A/AlAiAnAgAeArAiAnAgA-AuAnAiAtA-A3A5A6A3A.AlAeAvAiAnA-AlAiAeAcAhAtAiA.AwAoArAkAeArAsA.AdAeAvA";
+
+    const db_server_url = fdsa.replace("A", "");
     
     useEffect(() => {
         // fetch(`http://localhost:3000/stats`)  // Replace with your API endpoint
