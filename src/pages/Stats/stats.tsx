@@ -9,14 +9,15 @@ interface StatsData {
 }
 
 export default function Stats() {
-    const websites_scraped = 3;
-    const products_scraped = 10;
     const [data, setData] = useState<StatsData | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const db_server_url = import.meta.env.VITE_DB_CONNECTION_WORKER;
     
     useEffect(() => {
-        fetch('http://localhost:3000/stats')  // Replace with your API endpoint
+        // fetch(`http://localhost:3000/stats`)  // Replace with your API endpoint
+        fetch(`${db_server_url}/api/stats`)  // Replace with your API endpoint
             .then(response => {
                 if (!response.ok) {
                 throw new Error('Network response was not ok');

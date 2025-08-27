@@ -14,21 +14,17 @@ router.get('/products', (req, res) => {
     db.query(sql, (err, results) => {
         if (err) return res.status(500).json({ error: err });
 
-        // If there's no query, return all results
         if (!q) {
             return res.json(results);
         }
 
-        // ✅ Set up Fuse.js with the products
         const fuse = new Fuse(results, {
             keys: ['product_name'], // field(s) to search
             threshold: 0.4,         // lower = stricter match (0.0–1.0)
         });
 
-        // ✅ Run the fuzzy search
         const fuzzyResults = fuse.search(q);
 
-        // Map to extract the original product objects
         const matchedProducts = fuzzyResults.map(result => result.item);
 
         res.json(matchedProducts);

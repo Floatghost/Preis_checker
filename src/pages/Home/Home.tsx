@@ -4,10 +4,11 @@ import TableElem from '../../components/tableElem';
 import { Link } from 'react-router-dom';
 
 type Product = {
-    id: number;
-    website: string;
-    product_name: string;
-    preis: number;
+    product_id: number;
+    name: string;
+    manufacturer: string;
+    description: string;
+    category_id: number;
 };
 
 export default function SearchInput() {
@@ -15,6 +16,8 @@ export default function SearchInput() {
     const [data, setData] = useState<Product[] | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const db_server_url = import.meta.env.VITE_DB_CONNECTION_WORKER;
 
     useEffect(() => {
         if (query.trim() === "") {
@@ -28,7 +31,8 @@ export default function SearchInput() {
 
         setLoading(true);
         
-        fetch(`http://localhost:3000/api/products?q=${query}`, { signal })
+        // fetch(`http://localhost:3000/api/products?q=${query}`, { signal })
+        fetch(`${db_server_url}/api/price?q=${query}`, { signal })
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok")
@@ -92,7 +96,7 @@ export default function SearchInput() {
             <div className={styles.output}>
                 {data &&
                     data.map((prod) => {
-                        return <b key={prod.id}>{prod.product_name}   {prod.preis}CHF</b>;
+                        return <b key={prod.product_id}>{prod.name}   {prod.manufacturer}CHF</b>;
                     })
                 }
             </div>
