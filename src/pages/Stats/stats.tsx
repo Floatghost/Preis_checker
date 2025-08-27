@@ -13,13 +13,14 @@ export default function Stats() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const fdsa = "AhAtAtApAsA:A/A/AlAiAnAgAeArAiAnAgA-AuAnAiAtA-A3A5A6A3A.AlAeAvAiAnA-AlAiAeAcAhAtAiA.AwAoArAkAeArAsA.AdAeAvA";
-
-    const db_server_url = fdsa.replace("A", "");
+    const [db_server_url, setdb_server_url] = useState(() => {
+        const rawUrl = "AhAtAtApAsA:A/A/AlAiAnAgAeArAiAnAgA-AuAnAiAtA-A3A5A6A3A.AlAeAvAiAnA-AlAiAeAcAhAtAiA.AwAoArAkAeArAsA.AdAeAvA";
+        return rawUrl.replaceAll("A", "");
+    });
     
     useEffect(() => {
-        // fetch(`http://localhost:3000/stats`)  // Replace with your API endpoint
-        fetch(`${db_server_url}/api/stats`)  // Replace with your API endpoint
+        // fetch(`http://localhost:3000/stats`)
+        fetch(`${db_server_url}/api/stats`)
             .then(response => {
                 if (!response.ok) {
                 throw new Error('Network response was not ok');
