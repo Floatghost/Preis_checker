@@ -46,13 +46,24 @@ export default {
 		}
 
 		if (pathname === "/api/stats") {
-			const scraped_websites = Math.floor(Math.random() * 1000);
-			const scraped_products = Math.floor(Math.random() * 1000);
+			// const scraped_websites = Math.floor(Math.random() * 1000);
+			// const scraped_products = Math.floor(Math.random() * 1000);
 
-			return new Response(JSON.stringify({
-				"websites_scraped": scraped_websites,
-				"products_scraped": scraped_products
-			}), {
+			const websitesResult = await env.DB.prepare(
+				"SELECT DISTINCT vendor_name FROM vendors"
+			).all();
+
+			const productsResult = await env.DB.prepare(
+				"SELECT DISTINCT product_id FROM vendors"
+			).all();
+
+			return new Response(JSON.stringify(
+				{
+				"websites_scraped": websitesResult.results.length || 100,
+				"products_scraped": productsResult.results.length || 100,
+			}
+			// websitesResult
+			), {
 			headers: {
 				"Content-Type": "application/json",
 				...corsHeaders,

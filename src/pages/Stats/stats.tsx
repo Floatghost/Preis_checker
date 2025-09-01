@@ -35,7 +35,6 @@ export default function Stats() {
                 setError(error.message);
                 setLoading(false);
             });
-        console.log("fetched stats");
     }, []);
 
 
